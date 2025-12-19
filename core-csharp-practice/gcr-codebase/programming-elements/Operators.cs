@@ -47,6 +47,6 @@ class Operators{
 		// Bitwise Operators &   |   ^   ~   <<   >>
         int r = 5, v = 3;
         Console.WriteLine(r & v);  // 1
-
+        
 	}
 }
