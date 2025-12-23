@@ -3,92 +3,145 @@ Day 1: Introduction to the .NET Development Stack 🚀
 *Date:* 18 December 2025
 
 ### 🧠 Topics Covered
-- Understanding the *.NET ecosystem*  
-- Overview of *C#* as a modern programming language  
-- Setting up tools: *Visual Studio + .NET SDK 8*
 
-### ⚡ Core Concepts
-- Dual nature of C#: compiled and runtime-executed  
-- Compiler vs Interpreter explained
+* Architecture of the **.NET Framework / .NET Core**
+* Understanding **CLR, CTS, and CLS**
+* Introduction to **C# Operators**
+* Understanding **Access Modifiers** in C#
 
-### 🛠️ Coding Standards
-- Evolution of C#  
-- Naming conventions and commit best practices
+---
+
+### 🏛️ Architecture of .NET
+
+* **Common Language Runtime (CLR)**
+
+  * Handles memory management, garbage collection, exception handling, and security
+* **Base Class Library (BCL)**
+
+  * Provides reusable classes, interfaces, and APIs (System, System.IO, System.Collections, etc.)
+* **Common Type System (CTS)**
+
+  * Ensures type safety and defines data types across all .NET languages
+* **Common Language Specification (CLS)**
+
+  * A set of rules to ensure language interoperability
+* **Just-In-Time (JIT) Compiler**
+
+  * Converts Intermediate Language (IL) code into machine code at runtime
+
+---
+
+### ➗ Operators in C#
+
+* **Arithmetic Operators**: `+ , - , * , / , %`
+* **Relational Operators**: `== , != , > , < , >= , <=`
+* **Logical Operators**: `&& , || , !`
+* **Assignment Operators**: `= , += , -= , *= , /=`
+* **Increment / Decrement Operators**: `++ , --`
+* **Ternary Operator**: `condition ? trueValue : falseValue`
+
+---
+
+### 🔐 Access Modifiers in C#
+
+* **public** – Accessible from anywhere
+* **private** – Accessible only within the same class
+* **protected** – Accessible within the same class and derived classes
+* **internal** – Accessible within the same assembly
+* **protected internal** – Accessible within the same assembly or derived classes
+* **private protected** – Accessible within the same class or derived classes in the same assembly
+
+---
+
+### ⚡ Key Learnings
+
+* Understood how .NET executes code internally using CLR and JIT
+* Learned different categories of operators and their use cases
+* Gained clarity on access control and encapsulation using access modifiers
+
+---
+
+### 🛠️ Practice Work
+
+* Implemented programs using arithmetic and logical operators
+* Wrote sample classes to test different access modifiers
+* Explored how visibility changes across classes and assemblies
+
+---
+
+📌 *Day 2 focused on building a strong foundation in .NET internals and C# language fundamentals essential for enterprise development.*
 
 
 
-# Day 2: .NET Architecture, Operators & Access Modifiers 🏗️
+# 📅 Day 3: Control Flow Statements in C#
 
-Date: 19 December 2025
+Date: 22 December 2025
+
+# 🎯 Objective
+
+- To understand how a program makes decisions and repeats tasks using control flow statements in C#.
 
 # 🧠 Topics Covered
+1️⃣ Conditional Statements
 
-- Architecture of the .NET Framework / .NET Core
+Used to make decisions based on conditions.
 
-- Understanding CLR, CTS, and CLS
+- if statement
 
-- Introduction to C# Operators
+- if–else statement
 
-- Understanding Access Modifiers in C#
+- else–if ladder
 
-# 🏛️ Architecture of .NET
+- nested if
 
-- Common Language Runtime (CLR)
+- switch statement
 
-- Handles memory management, garbage collection, exception handling, and security
+📌 Example use cases:
 
-- Base Class Library (BCL)
+Checking pass/fail
 
-- Provides reusable classes, interfaces, and APIs (System, System.IO, System.Collections, etc.)
+Grade calculation
 
-Common Type System (CTS) -> Ensures type safety and defines data types across all .NET languages
+Menu-driven programs
 
-Common Language Specification (CLS) -> A set of rules to ensure language interoperability
+# 2️⃣ Looping Statements
 
-Just-In-Time (JIT) Compiler -> Converts Intermediate Language (IL) code into machine code at runtime
+Used to execute a block of code repeatedly.
 
-# ➗ Operators in C#
+- for loop
 
-- Arithmetic Operators: + , - , * , / , %
+- while loop
 
-- Relational Operators: == , != , > , < , >= , <=
+- do–while loop
 
-- Logical Operators: && , || , !
+- foreach loop
 
-- Assignment Operators: = , += , -= , *= , /=
+📌 Example use cases:
 
-- Increment / Decrement Operators: ++ , --
+Printing tables
 
-- Ternary Operator: condition ? trueValue : falseValue
+Iterating arrays
 
-# 🔐 Access Modifiers in C#
+Repeating user input
 
-- public – Accessible from anywhere
+# 3️⃣ Jump Statements
 
-- private – Accessible only within the same class
+Used to change the normal flow of execution.
 
-- protected – Accessible within the same class and derived classes 
+- break
 
-- internal – Accessible within the same assembly
+- continue
 
-- protected internal – Accessible within the same assembly or derived classes
+- return
 
-- private protected – Accessible within the same class or derived classes in the same assembly
+- goto (basic understanding)
 
-# ⚡ Key Learnings
+# ⚙️ Key Concepts Learned
 
-- Understood how .NET executes code internally using CLR and JIT
+- How program execution flows line by line
 
-- Learned different categories of operators and their use cases
+- Decision-making using conditions
 
-- Gained clarity on access control and encapsulation using access modifiers
+- Difference between entry-controlled and exit-controlled loops
 
-# 🛠️ Practice Work
-
-- Implemented programs using arithmetic and logical operators
-
-- Wrote sample classes to test different access modifiers
-
-- Explored how visibility changes across classes and assemblies
-
-📌 Day 2 focused on building a strong foundation in .NET internals and C# language fundamentals essential for enterprise development.
+- Loop control using break and continue
