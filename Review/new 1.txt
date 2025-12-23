@@ -1,0 +1,22 @@
+using System;
+
+class ClockAngle
+{
+    static void Main()
+    {
+        int hour = 1;
+        int minute = 0;
+
+        int hourAngle = hour * 30;     // 1 * 30 = 30
+        int minuteAngle = minute * 6; // 0 * 6 = 0
+
+        int angle;
+
+        if (hourAngle > minuteAngle)
+            angle = hourAngle - minuteAngle;
+        else
+            angle = minuteAngle - hourAngle;
+
+        Console.WriteLine("Angle between hands at 1:00 is " + angle + " degrees");
+    }
+}
