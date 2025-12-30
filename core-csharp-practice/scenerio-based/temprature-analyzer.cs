@@ -2,65 +2,97 @@ using System;
 
 class Program
 {
-    static void TempAnalyze(float[,] t)
+    static void AnalyzeTemperature(float[,] temperature)
     {
-        int hot = 0, cold = 0;
-        float h = -999, c = 999;
+        int day = 0;
 
-        for (int i = 0; i < 7; i++)
+        while (day < 7)
         {
-            float s = 0;
-            for (int j = 0; j < 24; j++) s += t[i, j];
-            float a = s / 24;
+            float hottestTemperature = temperature[day, 0];
+            float coldestTemperature = temperature[day, 0];
+            float sumOfTemperature = 0;
 
-            if (a > h) { h = a; hot = i; }
-            if (a < c) { c = a; cold = i; }
+            int hour = 0;
 
-            Console.WriteLine("Day " + (i + 1) + " Avg: " + a);
+            do
+            {
+                float currentTemperature = temperature[day, hour];
+
+                sumOfTemperature = sumOfTemperature + currentTemperature;
+
+                if (currentTemperature > hottestTemperature)
+                {
+                    hottestTemperature = currentTemperature;
+                }
+                else
+                {
+                    // nothing
+                }
+
+                if (currentTemperature < coldestTemperature)
+                {
+                    coldestTemperature = currentTemperature;
+                }
+                else
+                {
+                    // nothing
+                }
+
+                hour = hour + 1;
+
+            } while (hour < 24);
+
+            float averageTemperature = sumOfTemperature / 24;
+
+            switch (day)
+            {
+                case 0:
+                    Console.WriteLine("Sunday");
+                    break;
+                case 1:
+                    Console.WriteLine("Monday");
+                    break;
+                case 2:
+                    Console.WriteLine("Tuesday");
+                    break;
+                case 3:
+                    Console.WriteLine("Wednesday");
+                    break;
+                case 4:
+                    Console.WriteLine("Thursday");
+                    break;
+                case 5:
+                    Console.WriteLine("Friday");
+                    break;
+                case 6:
+                    Console.WriteLine("Saturday");
+                    break;
+            }
+
+            Console.WriteLine("Average Temperature = " + averageTemperature);
+            Console.WriteLine("Hottest Temperature = " + hottestTemperature);
+            Console.WriteLine("Coldest Temperature = " + coldestTemperature);
+            Console.WriteLine("--------------------------------");
+
+            day = day + 1;
         }
-        Console.WriteLine("Hot Day: " + (hot + 1));
-        Console.WriteLine("Cold Day: " + (cold + 1));
-    }
-
-    static void ScoreAnalyze(int[] m, int n)
-    {
-        int s = 0, hi = m[0], lo = m[0];
-
-        for (int i = 0; i < n; i++)
-        {
-            s += m[i];
-            if (m[i] > hi) hi = m[i];
-            if (m[i] < lo) lo = m[i];
-        }
-
-        float a = (float)s / n;
-        Console.WriteLine("Avg: " + a);
-        Console.WriteLine("High: " + hi);
-        Console.WriteLine("Low: " + lo);
-
-        for (int i = 0; i < n; i++)
-            if (m[i] > a) Console.WriteLine(m[i]);
     }
 
     static void Main()
     {
-        float[,] t = new float[7, 24];
-        float v = 20;
+        float[,] temperature = new float[7, 24];
+
+        float value = 20;
+
         for (int i = 0; i < 7; i++)
-            for (int j = 0; j < 24; j++) t[i, j] = v++;
-
-        TempAnalyze(t);
-
-        int n;
-        if (!int.TryParse(Console.ReadLine(), out n) || n <= 0) return;
-
-        int[] m = new int[n];
-        for (int i = 0; i < n; i++)
         {
-            int x;
-            if (!int.TryParse(Console.ReadLine(), out x) || x < 0) i--;
-            else m[i] = x;
+            for (int j = 0; j < 24; j++)
+            {
+                temperature[i, j] = value;
+                value = value + 1;
+            }
         }
-        ScoreAnalyze(m, n);
+
+        AnalyzeTemperature(temperature);
     }
 }
