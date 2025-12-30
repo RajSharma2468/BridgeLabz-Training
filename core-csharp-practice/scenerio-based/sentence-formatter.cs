@@ -2,89 +2,59 @@ using System;
 
 class Program
 {
-    static string Format(string s)
+    static string FormatParagraph(string text)
     {
-        if (s == null) return "";
+        string result = "";
+        bool space = false;
+        bool capital = true;
 
-        string r = "";
-        bool cap = true, sp = false;
-
-        for (int i = 0; i < s.Length; i++)
+        for (int i = 0; i < text.Length; i++)
         {
-            char c = s[i];
+            char ch = text[i];
 
-            if (c == ' ')
+            if (ch == ' ')
             {
-                if (!sp) { r += c; sp = true; }
+                if (space)
+                {
+                    result = result + ch;
+                    space = false;
+                }
+            }
+            else if (ch == '.' || ch == '?' || ch == '!')
+            {
+                result = result + ch;
+                result = result + ' ';
+                capital = true;
+                space = false;
             }
             else
             {
-                sp = false;
-                if (cap && c >= 'a' && c <= 'z')
+                if (capital && ch >= 'a' && ch <= 'z')
                 {
-                    r += (char)(c - 32);
-                    cap = false;
+                    ch = (char)(ch - 32);
+                    capital = false;
                 }
-                else r += c;
-
-                if (c == '.' || c == '?' || c == '!')
+                else
                 {
-                    r += ' ';
-                    cap = true;
-                    sp = true;
+                    capital = false;
                 }
-            }
-        }
-        return r;
-    }
 
-    static void Analyze(string s, string o, string n)
-    {
-        string w = "", outp = "", longW = "";
-        int count = 0;
-
-        for (int i = 0; i <= s.Length; i++)
-        {
-            char c = (i == s.Length) ? ' ' : s[i];
-
-            if (c != ' ') w += c;
-            else if (w.Length > 0)
-            {
-                count++;
-                if (w.Length > longW.Length) longW = w;
-                outp += Same(w, o) ? n + " " : w + " ";
-                w = "";
+                result = result + ch;
+                space = true;
             }
         }
 
-        Console.WriteLine(count);
-        Console.WriteLine(longW);
-        Console.WriteLine(outp);
-    }
-
-    static bool Same(string a, string b)
-    {
-        if (a.Length != b.Length) return false;
-
-        for (int i = 0; i < a.Length; i++)
-        {
-            char x = a[i], y = b[i];
-            if (x >= 'A' && x <= 'Z') x = (char)(x + 32);
-            if (y >= 'A' && y <= 'Z') y = (char)(y + 32);
-            if (x != y) return false;
-        }
-        return true;
+        return result;
     }
 
     static void Main()
     {
-        string s = Console.ReadLine();
-        string f = Format(s);
-        Console.WriteLine(f);
+        Console.WriteLine("Enter paragraph:");
+        string input = Console.ReadLine();
 
-        string oldW = Console.ReadLine();
-        string newW = Console.ReadLine();
+        string output = FormatParagraph(input);
 
-        Analyze(f, oldW, newW);
+        Console.WriteLine("Corrected Paragraph:");
+        Console.WriteLine(output);
     }
 }
