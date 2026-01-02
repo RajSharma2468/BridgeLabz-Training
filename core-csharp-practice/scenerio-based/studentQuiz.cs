@@ -104,7 +104,7 @@ class EduQuizSystem
             else
             {
                 Console.WriteLine("Question " + (i + 1) + ": Incorrect");
-                Console.WriteLine("Correct Answer: " + answerKey[i]);
+                Console.WriteLine("Correct Answer: " + answerKey[i]);   
             }
             Console.WriteLine();
         }
@@ -113,14 +113,14 @@ class EduQuizSystem
 
     double GetPercentage(int score)
     {
-        return ((double)score / totalQuestions) * 100;
+        return ((double)score / totalQuestions) * 100;   
     }
 
     bool AdminPanel()
     {
-        Console.WriteLine("\n--- Admin Menu ---");
-        Console.WriteLine("1. Modify Answer Key");
-        Console.WriteLine("2. View Answer Key");
+        Console.WriteLine("\n--- Admin Menu ---");  
+        Console.WriteLine("1. Modify Answer Key");    
+        Console.WriteLine("2. View Answer Key"); 
         Console.WriteLine("3. Logout");
         Console.Write("Choice: ");
 
@@ -129,7 +129,7 @@ class EduQuizSystem
         switch (choice)
         {
             case 1:
-                UpdateAnswerKey();
+                UpdateAnswerKey(); 
                 break;
 
             case 2:
