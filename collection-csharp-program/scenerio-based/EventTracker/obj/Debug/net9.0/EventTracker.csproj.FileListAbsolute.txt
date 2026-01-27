@@ -1,0 +1,15 @@
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\bin\Debug\net9.0\EventTracker.exe
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\bin\Debug\net9.0\EventTracker.deps.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\bin\Debug\net9.0\EventTracker.runtimeconfig.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\bin\Debug\net9.0\EventTracker.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\bin\Debug\net9.0\EventTracker.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.GeneratedMSBuildEditorConfig.editorconfig
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.AssemblyInfoInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.AssemblyInfo.cs
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.csproj.CoreCompileInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.sourcelink.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\refint\EventTracker.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\EventTracker.genruntimeconfig.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\EventTracker\obj\Debug\net9.0\ref\EventTracker.dll
