@@ -1,0 +1,15 @@
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\bin\Debug\net8.0\StreamBuzzApp.exe
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\bin\Debug\net8.0\StreamBuzzApp.deps.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\bin\Debug\net8.0\StreamBuzzApp.runtimeconfig.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\bin\Debug\net8.0\StreamBuzzApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\bin\Debug\net8.0\StreamBuzzApp.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.AssemblyInfoInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.AssemblyInfo.cs
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.csproj.CoreCompileInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.sourcelink.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\refint\StreamBuzzApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\StreamBuzzApp.genruntimeconfig.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\StreamBuzzApp\obj\Debug\net8.0\ref\StreamBuzzApp.dll
