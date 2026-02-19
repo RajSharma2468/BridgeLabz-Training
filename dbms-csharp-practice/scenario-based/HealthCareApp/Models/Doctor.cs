@@ -1,15 +1,21 @@
-using HealthCareApp.Attributes;
+using System;
 
 namespace HealthCareApp.Models
 {
-    public class Doctor
+    public class Doctor : Entity
     {
-        public int DoctorId { get; set; }
+        public string Name { get; set; }
+        public string Specialty { get; set; }
+        public string Contact { get; set; }
+        public double ConsultationFee { get; set; }
+        public bool IsActive { get; set; } = true;
 
-        [Required]
-        public string Name { get; set; } = "";
-
-        [Required]
-        public string Specialization { get; set; } = "";
+        public override void Display()
+        {
+            Console.WriteLine("Doctor ID: " + ID +
+                              ", Name: " + Name +
+                              ", Specialty: " + Specialty +
+                              ", Active: " + IsActive);
+        }
     }
 }

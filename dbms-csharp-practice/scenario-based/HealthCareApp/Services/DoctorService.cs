@@ -1,43 +1,59 @@
 using System;
-using System.Collections.Generic;
 using HealthCareApp.Models;
-using HealthCareApp.Repositories;
 using HealthCareApp.Utilities;
+using HealthCareApp.Attributes;
+using Microsoft.Data.SqlClient;
 
 namespace HealthCareApp.Services
 {
     public class DoctorService
     {
-        private DoctorRepository repo = new DoctorRepository();
-
-        public void AddDoctor()
+        public void AddDoctor(Doctor doctor)
         {
-            Doctor d = new Doctor();
+            using (var conn = Database.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO Doctors (Name, Specialty, Contact, ConsultationFee, IsActive)
+                                    VALUES (@name, @specialty, @contact, @fee, @isActive);
+                                    SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("@name", doctor.Name);
+                cmd.Parameters.AddWithValue("@specialty", doctor.Specialty);
+                cmd.Parameters.AddWithValue("@contact", doctor.Contact);
+                cmd.Parameters.AddWithValue("@fee", doctor.ConsultationFee);
+                cmd.Parameters.AddWithValue("@isActive", true);
 
-            Console.Write("Enter Doctor Name: ");
-            d.Name = Console.ReadLine();
+                doctor.ID = Convert.ToInt32(cmd.ExecuteScalar());
+            }
 
-            Console.Write("Enter Specialization: ");
-            d.Specialization = Console.ReadLine();
-
-            Validator.Validate(d);
-            repo.Add(d);
-            AuditLogger.Log("Doctor Added");
-
-            Console.WriteLine("Doctor added successfully.");
+            Logger.Log("Doctor " + doctor.Name + " added with ID " + doctor.ID);
         }
 
-        public void ViewDoctors()
+        // Update, Deactivate, ViewBySpecialty remain same
+        [Audit("Update Doctor Specialty")]
+        public void UpdateSpecialty(int id, string specialty)
         {
-            List<Doctor> doctors = repo.GetAll();
-
-            foreach (Doctor d in doctors)
+            using (var conn = Database.GetConnection())
             {
-                Console.WriteLine("ID: " + d.DoctorId);
-                Console.WriteLine("Name: " + d.Name);
-                Console.WriteLine("Specialization: " + d.Specialization);
-                Console.WriteLine("---------------------");
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"UPDATE Doctors SET Specialty=@specialty WHERE ID=@id";
+                cmd.Parameters.AddWithValue("@specialty", specialty);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
             }
+            Logger.Log("Doctor " + id + " specialty updated to " + specialty);
+        }
+
+        [Audit("Deactivate Doctor")]
+        public void Deactivate(int id)
+        {
+            using (var conn = Database.GetConnection())
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"UPDATE Doctors SET IsActive=0 WHERE ID=@id";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+            }
+            Logger.Log("Doctor " + id + " deactivated");
         }
     }
 }

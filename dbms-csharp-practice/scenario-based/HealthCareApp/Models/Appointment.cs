@@ -1,23 +1,21 @@
 using System;
-using HealthCareApp.Attributes;
 
 namespace HealthCareApp.Models
 {
-    public class Appointment
+    public class Appointment : Entity
     {
-        public int AppointmentId { get; set; }
-
-        [Required]
-        public int DoctorId { get; set; }
-
-        [Required]
-        public int PatientId { get; set; }
-
-        [Required]
+        public int PatientID { get; set; }
+        public int DoctorID { get; set; }
         public DateTime AppointmentDate { get; set; }
+        public string Status { get; set; } = "SCHEDULED";
 
-        [Required]
-        [RegexPattern("^[a-zA-Z0-9 ,.-]{3,200}$")]
-        public string Reason { get; set; } = "";
+        public override void Display()
+        {
+            Console.WriteLine("Appointment ID: " + ID +
+                              ", PatientID: " + PatientID +
+                              ", DoctorID: " + DoctorID +
+                              ", Date: " + AppointmentDate.ToString("dd/MM/yyyy HH:mm") +
+                              ", Status: " + Status);
+        }
     }
 }

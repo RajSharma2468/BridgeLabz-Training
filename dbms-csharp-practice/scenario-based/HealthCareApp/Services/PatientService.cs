@@ -1,62 +1,49 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using HealthCareApp.Models;
-using HealthCareApp.Repositories;
 using HealthCareApp.Utilities;
+using System;
 
 namespace HealthCareApp.Services
 {
     public class PatientService
     {
-        private PatientRepository repo = new PatientRepository();
-
-        public void AddPatient()
+        public void Register(Patient patient)
         {
-            try
+            using (var conn = Database.GetConnection())
             {
-                Patient p = new Patient();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO Patients (Name, DOB, Contact, Address, BloodGroup)
+                                    VALUES (@name, @dob, @contact, @address, @bg);
+                                    SELECT SCOPE_IDENTITY();"; // Get DB-generated ID
+                cmd.Parameters.AddWithValue("@name", patient.Name);
+                cmd.Parameters.AddWithValue("@dob", patient.DOB);
+                cmd.Parameters.AddWithValue("@contact", patient.Contact);
+                cmd.Parameters.AddWithValue("@address", patient.Address);
+                cmd.Parameters.AddWithValue("@bg", patient.BloodGroup);
 
-                Console.Write("Enter Patient Name: ");
-                p.Name = Console.ReadLine() ?? string.Empty;
-
-                Console.Write("Enter Phone (10 digits): ");
-                p.Phone = Console.ReadLine() ?? string.Empty;
-
-                Console.Write("Enter Email: ");
-                p.Email = Console.ReadLine() ?? string.Empty;
-
-                // Validate attributes (Required, Regex etc.)
-                Validator.Validate(p);
-
-                repo.Add(p);
-
-                AuditLogger.Log("Patient Added: " + p.Name);
-
-                Console.WriteLine("Patient added successfully.");
+                // Assign database-generated ID
+                patient.ID = Convert.ToInt32(cmd.ExecuteScalar());
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
+
+            Console.WriteLine("[" + DateTime.Now + "] Patient " + patient.Name + " registered with ID " + patient.ID);
         }
 
-        public void ViewPatients()
+        public void DisplayAllPatients()
         {
-            List<Patient> patients = repo.GetAll();
-
-            if (patients == null || patients.Count == 0)
+            using (var conn = Database.GetConnection())
             {
-                Console.WriteLine("No patients found.");
-                return;
-            }
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT ID, Name, Contact FROM Patients";
 
-            foreach (Patient p in patients)
-            {
-                Console.WriteLine("ID: " + p.PatientId);
-                Console.WriteLine("Name: " + p.Name);
-                Console.WriteLine("Phone: " + p.Phone);
-                Console.WriteLine("Email: " + p.Email);
-                Console.WriteLine("------------------------");
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine("ID: " + reader.GetInt32(0) +
+                                          ", Name: " + reader.GetString(1) +
+                                          ", Contact: " + reader.GetString(2));
+                    }
+                }
             }
         }
     }

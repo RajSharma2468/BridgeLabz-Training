@@ -1,20 +1,23 @@
-using HealthCareApp.Attributes;
+using System;
 
 namespace HealthCareApp.Models
 {
-    public class Patient
+    public class Patient : Entity
     {
-        public int PatientId { get; set; }
+        public string Name { get; set; }
+        public DateTime DOB { get; set; }
+        public string Contact { get; set; }
+        public string Address { get; set; }
+        public string BloodGroup { get; set; }
 
-        [Required]
-        public string Name { get; set; } = "";
-
-        [Required]
-        [RegexPattern("^[0-9]{10}$")]
-        public string Phone { get; set; } = "";
-
-        [Required]
-        [RegexPattern("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")]
-        public string Email { get; set; } = "";
+        // Console me patient details display karne ke liye
+        public override void Display()
+        {
+            Console.WriteLine("Patient ID: " + ID + 
+                              ", Name: " + Name + 
+                              ", DOB: " + DOB.ToShortDateString() + 
+                              ", Contact: " + Contact + 
+                              ", BloodGroup: " + BloodGroup);
+        }
     }
 }

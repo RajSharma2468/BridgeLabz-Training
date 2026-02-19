@@ -636,6 +636,25 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "System.Windows.Extensions/10.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Windows.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Windows.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Windows.Extensions.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
       }
     }
   },
@@ -1877,11 +1896,39 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "System.Windows.Extensions/10.0.3": {
+      "sha512": "TZ/9e7JLxAT3j66XuNh7Bbqfz1m7UZC92uLknoldmALo82OYhrb4e8LGQ0S3umh2M+JQ94qQpLvPXIkmyuMraw==",
+      "type": "package",
+      "path": "system.windows.extensions/10.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/System.Windows.Extensions.dll",
+        "lib/net10.0/System.Windows.Extensions.xml",
+        "lib/net8.0/System.Windows.Extensions.dll",
+        "lib/net8.0/System.Windows.Extensions.xml",
+        "lib/net9.0/System.Windows.Extensions.dll",
+        "lib/net9.0/System.Windows.Extensions.xml",
+        "runtimes/win/lib/net10.0/System.Windows.Extensions.dll",
+        "runtimes/win/lib/net10.0/System.Windows.Extensions.xml",
+        "runtimes/win/lib/net8.0/System.Windows.Extensions.dll",
+        "runtimes/win/lib/net8.0/System.Windows.Extensions.xml",
+        "runtimes/win/lib/net9.0/System.Windows.Extensions.dll",
+        "runtimes/win/lib/net9.0/System.Windows.Extensions.xml",
+        "system.windows.extensions.10.0.3.nupkg.sha512",
+        "system.windows.extensions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.Data.SqlClient >= 5.2.0"
+      "Microsoft.Data.SqlClient >= 5.2.0",
+      "System.Windows.Extensions >= 10.0.3"
     ]
   },
   "packageFolders": {
@@ -1938,6 +1985,10 @@
           "Microsoft.Data.SqlClient": {
             "target": "Package",
             "version": "[5.2.0, )"
+          },
+          "System.Windows.Extensions": {
+            "target": "Package",
+            "version": "[10.0.3, )"
           }
         },
         "imports": [
