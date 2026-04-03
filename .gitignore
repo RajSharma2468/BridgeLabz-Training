@@ -1,0 +1,12 @@
+*.dll
+*.exe
+*.lib
+*.obj
+bin/
+obj/
+*.dll
+*.exe
+*.lib
+*.obj
+bin/
+obj/
