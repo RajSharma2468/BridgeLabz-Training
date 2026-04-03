@@ -1,0 +1,15 @@
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\bin\Debug\net9.0\BankManagement.exe
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\bin\Debug\net9.0\BankManagement.deps.json
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\bin\Debug\net9.0\BankManagement.runtimeconfig.json
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\bin\Debug\net9.0\BankManagement.dll
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\bin\Debug\net9.0\BankManagement.pdb
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.GeneratedMSBuildEditorConfig.editorconfig
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.AssemblyInfoInputs.cache
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.AssemblyInfo.cs
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.csproj.CoreCompileInputs.cache
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.sourcelink.json
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.dll
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\refint\BankManagement.dll
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.pdb
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\BankManagement.genruntimeconfig.cache
+D:\College\BridgeLabz-Training\oops-csharp-programs\scenario-based\bankManagement\obj\Debug\net9.0\ref\BankManagement.dll
