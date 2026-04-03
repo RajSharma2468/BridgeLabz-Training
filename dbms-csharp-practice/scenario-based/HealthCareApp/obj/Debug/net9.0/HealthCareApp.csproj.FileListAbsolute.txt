@@ -1,6 +1,0 @@
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.csproj.AssemblyReference.cache
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.GeneratedMSBuildEditorConfig.editorconfig
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.AssemblyInfoInputs.cache
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.AssemblyInfo.cs
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.csproj.CoreCompileInputs.cache
-D:\College\BridgeLabz-Training\dbms-csharp-practice\scenario-based\HealthCareApp\obj\Debug\net9.0\HealthCareApp.sourcelink.json
