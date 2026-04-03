@@ -1,0 +1,15 @@
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\bin\Debug\net8.0\OceanFleetApp.exe
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\bin\Debug\net8.0\OceanFleetApp.deps.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\bin\Debug\net8.0\OceanFleetApp.runtimeconfig.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\bin\Debug\net8.0\OceanFleetApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\bin\Debug\net8.0\OceanFleetApp.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.AssemblyInfoInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.AssemblyInfo.cs
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.csproj.CoreCompileInputs.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.sourcelink.json
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\refint\OceanFleetApp.dll
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.pdb
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\OceanFleetApp.genruntimeconfig.cache
+D:\College\BridgeLabz-Training\collection-csharp-program\scenerio-based\OceanFleetApp\obj\Debug\net8.0\ref\OceanFleetApp.dll
