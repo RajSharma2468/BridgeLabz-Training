@@ -9,7 +9,7 @@ class Program
         while (true)
         {
             EduResultsMenu.Show();
-            int choice = int.Parse(Console.ReadLine());
+            int choice = int.Parse(Console.ReadLine()); 
 
             if (choice == 1)
             {
@@ -17,7 +17,7 @@ class Program
             }
             else if (choice == 2)
             {
-                system.GenerateRankList();
+                system.GenerateRankList();   
             }
             else
             {
