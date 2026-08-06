@@ -71,19 +71,7 @@ namespace HealthClinicApp.Services
             }
         }
 
-        // Cancels an existing appointment
-        public void CancelAppointment(int appointmentId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand("sp_CancelAppointment", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@AppointmentId", appointmentId);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
+        
 
         // Fetches audit trail entries
         public List<string> GetAuditLog(int appointmentId)

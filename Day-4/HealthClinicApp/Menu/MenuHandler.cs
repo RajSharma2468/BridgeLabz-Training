@@ -21,8 +21,8 @@ namespace HealthClinicApp.Menu
                 Console.WriteLine("\n===== Health Clinic App =====");
                 Console.WriteLine("1. View All Patients");
                 Console.WriteLine("2. View All Doctors");
-                Console.WriteLine("3. Add New Patient");        // NAYA
-                Console.WriteLine("4. Add New Doctor");         // NAYA
+                Console.WriteLine("3. Add New Patient");        
+                Console.WriteLine("4. Add New Doctor");         
                 Console.WriteLine("5. Book Appointment");
                 Console.WriteLine("6. View Patient Appointments");
                 Console.WriteLine("7. Update Appointment Status");
@@ -37,8 +37,8 @@ namespace HealthClinicApp.Menu
                 {
                     case "1": ViewPatients(); break;
                     case "2": ViewDoctors(); break;
-                    case "3": AddPatient(); break;               // NAYA
-                    case "4": AddDoctor(); break;                // NAYA
+                    case "3": AddPatient(); break;               
+                    case "4": AddDoctor(); break;                
                     case "5": BookAppointment(); break;
                     case "6": ViewPatientAppointments(); break;
                     case "7": UpdateStatus(); break;
@@ -64,7 +64,7 @@ namespace HealthClinicApp.Menu
                 Console.WriteLine($"{row["DoctorId"]} | {row["FirstName"]} {row["LastName"]} | {row["Specialization"]}");
         }
 
-        // Naya method: Patient add karta hai
+        // add new patient
         private void AddPatient()
         {
             Patient p = new Patient();
@@ -95,7 +95,7 @@ namespace HealthClinicApp.Menu
             }
         }
 
-        // Naya method: Doctor add karta hai
+        // add new doctors 
         private void AddDoctor()
         {
             Doctor d = new Doctor();
