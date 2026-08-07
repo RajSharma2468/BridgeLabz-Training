@@ -169,3 +169,5 @@ SELECT name FROM sys.procedures WHERE name IN (
     'sp_CancelAppointment',
     'sp_GetAppointmentAuditLog'
 );
+select * from AppointmentAudit;
+select * from Patients;

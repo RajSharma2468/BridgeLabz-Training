@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Greeting App";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Greeting App</h1>
+    <p>Enter your name to get a personalized greeting.</p>
+
+    <form asp-controller="Home" asp-action="GetGreeting" method="post">
+        <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Enter your name" required />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Get Greeting</button>
+    </form>
+</div>
