@@ -1,23 +1,23 @@
 using ContactApp.Model;
+using ContactApp.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Register repository for dependency injection
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+
 var app = builder.Build();
 
-// In-memory storage for contacts
-List<Contact> contacts = new List<Contact>();
-int nextId = 1;
-
 // GET all contacts
-app.MapGet("/contacts", () =>
+app.MapGet("/contacts", (IContactRepository repo) =>
 {
-    return Results.Ok(contacts);
+    return Results.Ok(repo.GetAll());
 });
 
 // GET contact by id
-app.MapGet("/contacts/{id}", (int id) =>
+app.MapGet("/contacts/{id}", (int id, IContactRepository repo) =>
 {
-    var contact = contacts.FirstOrDefault(c => c.ContactId == id);
-
+    var contact = repo.GetById(id);
     if (contact == null)
         return Results.NotFound($"Contact with id {id} not found.");
 
@@ -25,39 +25,23 @@ app.MapGet("/contacts/{id}", (int id) =>
 });
 
 // POST create new contact
-app.MapPost("/contacts", (Contact contact) =>
+app.MapPost("/contacts", (Contact contact, IContactRepository repo) =>
 {
-    contact.ContactId = nextId;
-    nextId++;
-
-    contacts.Add(contact);
+    repo.Add(contact);
     return Results.Ok("Contact created successfully.");
 });
 
 // PUT update existing contact
-app.MapPut("/contacts/{id}", (int id, Contact updatedContact) =>
+app.MapPut("/contacts/{id}", (int id, Contact contact, IContactRepository repo) =>
 {
-    var contact = contacts.FirstOrDefault(c => c.ContactId == id);
-
-    if (contact == null)
-        return Results.NotFound($"Contact with id {id} not found.");
-
-    contact.Name = updatedContact.Name;
-    contact.Phone = updatedContact.Phone;
-    contact.Email = updatedContact.Email;
-
+    repo.Update(id, contact);
     return Results.Ok("Contact updated successfully.");
 });
 
 // DELETE remove a contact
-app.MapDelete("/contacts/{id}", (int id) =>
+app.MapDelete("/contacts/{id}", (int id, IContactRepository repo) =>
 {
-    var contact = contacts.FirstOrDefault(c => c.ContactId == id);
-
-    if (contact == null)
-        return Results.NotFound($"Contact with id {id} not found.");
-
-    contacts.Remove(contact);
+    repo.Delete(id);
     return Results.Ok("Contact deleted successfully.");
 });
 
