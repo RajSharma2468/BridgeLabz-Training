@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ContactApp.Model
+namespace ContactAppEF.Model
 {
     // Encapsulated Contact model (EF Core entity)
     public class Contact
