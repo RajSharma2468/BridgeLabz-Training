@@ -10,5 +10,9 @@ namespace FundooNotes.Business
         List<NoteResponseDTO> GetAllNotes();
         NoteResponseDTO GetNoteById(int id);
         void DeleteNote(int id);
+        void TrashNote(int id);
+        void ArchiveNote(int id);
+        List<NoteResponseDTO> FilterNotes(string status);
+        List<NoteResponseDTO> SortNotes(string sortBy, string order);
     }
 }

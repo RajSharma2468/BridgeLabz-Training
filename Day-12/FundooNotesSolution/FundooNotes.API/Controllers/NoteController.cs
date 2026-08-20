@@ -116,5 +116,104 @@ namespace FundooNotes.API.Controllers
                 return NotFound(response);
             }
         }
+
+        // PUT api/note/1/trash
+        [HttpPut("{id}/trash")]
+        public IActionResult Trash(int id)
+        {
+            try
+            {
+                _business.TrashNote(id);
+
+                var response = new ResponseDTO<string>
+                {
+                    Success = true,
+                    Message = "Note trash status updated.",
+                    Data = null
+                };
+                return Ok(response);
+            }
+            catch (UserNotFoundException ex)
+            {
+                var response = new ResponseDTO<string>
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    Data = null
+                };
+                return NotFound(response);
+            }
+        }
+
+        // PUT api/note/1/archive
+        [HttpPut("{id}/archive")]
+        public IActionResult Archive(int id)
+        {
+            try
+            {
+                _business.ArchiveNote(id);
+
+                var response = new ResponseDTO<string>
+                {
+                    Success = true,
+                    Message = "Note archive status updated.",
+                    Data = null
+                };
+                return Ok(response);
+            }
+            catch (UserNotFoundException ex)
+            {
+                var response = new ResponseDTO<string>
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    Data = null
+                };
+                return NotFound(response);
+            }
+        }
+
+        // GET api/note/filter?status=active
+        [HttpGet("filter")]
+        public IActionResult Filter([FromQuery] string status)
+        {
+            try
+            {
+                var notes = _business.FilterNotes(status);
+
+                var response = new ResponseDTO<List<NoteResponseDTO>>
+                {
+                    Success = true,
+                    Message = $"Notes filtered by status: {status}",
+                    Data = notes
+                };
+                return Ok(response);
+            }
+            catch (ValidationException ex)
+            {
+                var response = new ResponseDTO<string>
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    Data = null
+                };
+                return BadRequest(response);
+            }
+        }
+
+        // GET api/note/sort?sortBy=title&order=asc
+        [HttpGet("sort")]
+        public IActionResult Sort([FromQuery] string sortBy, [FromQuery] string order)
+        {
+            var notes = _business.SortNotes(sortBy, order);
+
+            var response = new ResponseDTO<List<NoteResponseDTO>>
+            {
+                Success = true,
+                Message = $"Notes sorted by {sortBy} ({order})",
+                Data = notes
+            };
+            return Ok(response);
+        }
     }
 }

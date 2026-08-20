@@ -5,9 +5,10 @@ namespace FundooNotes.Model.Entities
     {
         private int _noteId;
         private string _title;
-        private string? _description;
         private int _userId;
         private DateTime _createdAt;
+        private bool _isTrashed;
+        private bool _isArchived;
 
         public int NoteId
         {
@@ -21,12 +22,6 @@ namespace FundooNotes.Model.Entities
             set { _title = value; }
         }
 
-        public string? Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
-
         public int UserId
         {
             get { return _userId; }
@@ -37,6 +32,18 @@ namespace FundooNotes.Model.Entities
         {
             get { return _createdAt; }
             set { _createdAt = value; }
+        }
+
+        public bool IsTrashed
+        {
+            get { return _isTrashed; }
+            set { _isTrashed = value; }
+        }
+
+        public bool IsArchived
+        {
+            get { return _isArchived; }
+            set { _isArchived = value; }
         }
     }
 }

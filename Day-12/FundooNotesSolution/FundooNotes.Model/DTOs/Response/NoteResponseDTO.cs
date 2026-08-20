@@ -5,7 +5,8 @@ namespace FundooNotes.Model.DTOs.Response
     {
         public int NoteId { get; set; }
         public string Title { get; set; }
-        public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
+        public bool IsTrashed { get; set; }
+        public bool IsArchived { get; set; }
     }
 }

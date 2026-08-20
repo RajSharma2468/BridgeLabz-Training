@@ -9,5 +9,8 @@ namespace FundooNotes.Repository
         Note GetById(int id);
         void Add(Note note);
         void Delete(int id);
+        void Update(Note note);
+        List<Note> GetFiltered(bool? isTrashed, bool? isArchived);
+        List<Note> GetSorted(string sortBy, string order);
     }
 }
