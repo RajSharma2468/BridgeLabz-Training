@@ -12,7 +12,10 @@ namespace FundooNotes.Business
         void DeleteNote(int id);
         void TrashNote(int id);
         void ArchiveNote(int id);
+        void UpdateLabel(int id, string label);
         List<NoteResponseDTO> FilterNotes(string status);
         List<NoteResponseDTO> SortNotes(string sortBy, string order);
+        // Update note label.
+       
     }
 }

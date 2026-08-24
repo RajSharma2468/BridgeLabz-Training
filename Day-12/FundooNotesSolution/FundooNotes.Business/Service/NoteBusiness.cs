@@ -1,88 +1,124 @@
-using FundooNotes.Model.Entities;
 using FundooNotes.Model.DTOs.Request;
 using FundooNotes.Model.DTOs.Response;
+using FundooNotes.Model.Entities;
 using FundooNotes.Model.Exceptions;
 using FundooNotes.Repository;
 
 namespace FundooNotes.Business
 {
-    // Handles note business logic
+    // Business layer contains validation and application logic.
     public class NoteBusiness : INoteBusiness
     {
         private readonly INoteRepository _repository;
 
-        public NoteBusiness(INoteRepository repository)
+        // Repository is injected through constructor.
+        public NoteBusiness(
+            INoteRepository repository)
         {
             _repository = repository;
         }
 
-        // Validates and creates a new note
-        public void CreateNote(CreateNoteRequestDTO dto)
+        // Creates a new note.
+        public void CreateNote(
+            CreateNoteRequestDTO dto)
         {
+            // Validate title.
             if (string.IsNullOrWhiteSpace(dto.Title))
-                throw new ValidationException("Title cannot be empty.");
+            {
+                throw new ValidationException(
+                    "Title cannot be empty.");
+            }
 
+            // Create entity object.
             Note note = new Note();
+
             note.Title = dto.Title;
             note.UserId = dto.UserId;
-            note.CreatedAt = DateTime.UtcNow;
+            note.CreatedAt = DateTime.Now;
             note.IsTrashed = false;
             note.IsArchived = false;
+            note.Label = null;
+            note.ReminderDateTime = null;
 
+            // Save note through repository.
             _repository.Add(note);
         }
 
-        // Returns all notes mapped to response DTOs
+        // Returns all notes.
         public List<NoteResponseDTO> GetAllNotes()
         {
             var notes = _repository.GetAll();
-            return MapToDtoList(notes);
+
+            return notes
+                .Select(MapToDto)
+                .ToList();
         }
 
-        // Returns single note by id
+        // Returns a single note by ID.
         public NoteResponseDTO GetNoteById(int id)
         {
             var note = _repository.GetById(id);
+
             if (note == null)
-                throw new UserNotFoundException($"Note with id {id} not found.");
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
 
             return MapToDto(note);
         }
 
-        // Deletes note permanently after existence check
+        // Permanently deletes note.
         public void DeleteNote(int id)
         {
             var note = _repository.GetById(id);
+
             if (note == null)
-                throw new UserNotFoundException($"Note with id {id} not found.");
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
 
             _repository.Delete(id);
         }
 
-        // Toggles the trashed flag on a note
+        // Moves note to trash.
         public void TrashNote(int id)
         {
             var note = _repository.GetById(id);
-            if (note == null)
-                throw new UserNotFoundException($"Note with id {id} not found.");
 
+            if (note == null)
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
+
+            // Toggle trash status.
             note.IsTrashed = !note.IsTrashed;
+
             _repository.Update(note);
         }
 
-        // Toggles the archived flag on a note
+        // Archives a note.
         public void ArchiveNote(int id)
         {
             var note = _repository.GetById(id);
-            if (note == null)
-                throw new UserNotFoundException($"Note with id {id} not found.");
 
+            if (note == null)
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
+
+            // Toggle archive status.
             note.IsArchived = !note.IsArchived;
+
             _repository.Update(note);
         }
 
-        // Filters notes by status: active, trash, or archive
-        public List<NoteResponseDTO> FilterNotes(string status)
+        // Filters notes based on status.
+        public List<NoteResponseDTO> FilterNotes(
+            string status)
         {
             bool? isTrashed = null;
             bool? isArchived = null;
@@ -95,48 +131,71 @@ namespace FundooNotes.Business
             {
                 isArchived = true;
             }
-            else if (status == "active")
-            {
-                isTrashed = false;
-                isArchived = false;
-            }
-            else
-            {
-                throw new ValidationException("Invalid status. Use active, trash, or archive.");
-            }
 
-            var notes = _repository.GetFiltered(isTrashed, isArchived);
-            return MapToDtoList(notes);
+            var notes =
+                _repository.GetFiltered(
+                    isTrashed,
+                    isArchived);
+
+            return notes
+                .Select(MapToDto)
+                .ToList();
         }
 
-        // Sorts notes by title or createdAt
-        public List<NoteResponseDTO> SortNotes(string sortBy, string order)
+        // Sorts notes.
+        public List<NoteResponseDTO> SortNotes(
+            string sortBy,
+            string order)
         {
-            var notes = _repository.GetSorted(sortBy, order);
-            return MapToDtoList(notes);
+            var notes =
+                _repository.GetSorted(
+                    sortBy,
+                    order);
+
+            return notes
+                .Select(MapToDto)
+                .ToList();
         }
 
-        // Converts a single entity to response DTO
-        private NoteResponseDTO MapToDto(Note note)
+        // Updates label of a note.
+        public void UpdateLabel(
+            int id,
+            string label)
         {
-            NoteResponseDTO dto = new NoteResponseDTO();
+            // Find note first.
+            var note = _repository.GetById(id);
+
+            // If note doesn't exist, throw exception.
+            if (note == null)
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
+
+            // Update label.
+            note.Label = label;
+
+            // Save updated note.
+            _repository.Update(note);
+        }
+
+        // Converts Entity into Response DTO.
+        private NoteResponseDTO MapToDto(
+            Note note)
+        {
+            NoteResponseDTO dto =
+                new NoteResponseDTO();
+
             dto.NoteId = note.NoteId;
             dto.Title = note.Title;
             dto.CreatedAt = note.CreatedAt;
             dto.IsTrashed = note.IsTrashed;
             dto.IsArchived = note.IsArchived;
-            return dto;
-        }
+            dto.Label = note.Label;
+            dto.ReminderDateTime =
+                note.ReminderDateTime;
 
-        // Converts a list of entities to response DTOs
-        private List<NoteResponseDTO> MapToDtoList(List<Note> notes)
-        {
-            List<NoteResponseDTO> result = new List<NoteResponseDTO>();
-            foreach (var note in notes)
-            {
-                result.Add(MapToDto(note));
-            }
-            return result;
+            return dto;
         }
     }
 }

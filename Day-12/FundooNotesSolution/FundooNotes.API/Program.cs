@@ -3,69 +3,94 @@ using FundooNotes.Repository;
 using FundooNotes.Repository.Data;
 using FundooNotes.Business;
 
-// Creates the application builder
-var builder = WebApplication.CreateBuilder(args);
+var builder =
+    WebApplication.CreateBuilder(args);
 
-// Reads database connection string
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Registers MVC controllers
+// ----------------------------------------------------
+// DATABASE CONFIGURATION
+// ----------------------------------------------------
+
+// Read SQL Server connection string
+// from appsettings.json.
+var connectionString =
+    builder.Configuration.GetConnectionString(
+        "DefaultConnection");
+
+
+// Register Controllers.
 builder.Services.AddControllers();
 
-// Enables API endpoint explorer
+
+// Register Swagger.
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Configures Swagger documentation generator
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-    {
-        Title = "Fundoo Notes API",
-        Version = "v1",
-        Description = "User Management and Notes Module"
-    });
-});
 
-// Registers EF Core DbContext
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+// ----------------------------------------------------
+// DEPENDENCY INJECTION / IOC
+// ----------------------------------------------------
 
-// Registers HttpClient factory service
-builder.Services.AddHttpClient();
+// Register DbContext.
+// ASP.NET Core will create AppDbContext automatically
+// whenever Repository needs it.
+builder.Services.AddDbContext<AppDbContext>(
+    options =>
+        options.UseSqlServer(connectionString));
 
-// Registers user repository dependency
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-// Registers user business dependency
-builder.Services.AddScoped<IUserBusiness, UserBusiness>();
+// Register Repository.
+// Whenever INoteRepository is requested,
+// ASP.NET Core creates NoteRepository.
+builder.Services.AddScoped<
+    INoteRepository,
+    NoteRepository>();
 
-// Registers note repository dependency
-builder.Services.AddScoped<INoteRepository, NoteRepository>();
 
-// Registers note business dependency
-builder.Services.AddScoped<INoteBusiness, NoteBusiness>();
+// Register Business layer.
+// Whenever INoteBusiness is requested,
+// ASP.NET Core creates NoteBusiness.
+builder.Services.AddScoped<
+    INoteBusiness,
+    NoteBusiness>();
 
-// Builds the application instance
+
+// Register Email service.
+// Whenever IEmailService is requested,
+// ASP.NET Core creates EmailService.
+builder.Services.AddScoped<
+    IEmailService,
+    EmailService>();
+
+
+// Build application.
 var app = builder.Build();
 
-// Enables Swagger in development
+
+// ----------------------------------------------------
+// HTTP PIPELINE
+// ----------------------------------------------------
+
 if (app.Environment.IsDevelopment())
 {
+    // Enable Swagger.
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Fundoo Notes API v1");
-    });
+
+    app.UseSwaggerUI();
 }
 
-// Redirects HTTP to HTTPS
+
+// Redirect HTTP requests to HTTPS.
 app.UseHttpsRedirection();
 
-// Enables authorization middleware
+
+// Authorization middleware.
 app.UseAuthorization();
 
-// Maps controller endpoint routes
+
+// Map controller routes.
 app.MapControllers();
 
-// Starts the application
+
+// Start application.
 app.Run();

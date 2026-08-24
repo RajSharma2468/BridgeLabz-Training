@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooNotes.Business", "Fun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooNotes.API", "FundooNotes.API\FundooNotes.API.csproj", "{844ADD94-0AAF-47AC-9125-EF61B447FE1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooNotes.Tests", "FundooNotes.Tests\FundooNotes.Tests.csproj", "{1AAC3BDC-9315-405B-AA17-3667ECE8E210}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{844ADD94-0AAF-47AC-9125-EF61B447FE1E}.Release|x64.Build.0 = Release|Any CPU
 		{844ADD94-0AAF-47AC-9125-EF61B447FE1E}.Release|x86.ActiveCfg = Release|Any CPU
 		{844ADD94-0AAF-47AC-9125-EF61B447FE1E}.Release|x86.Build.0 = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|x64.Build.0 = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Debug|x86.Build.0 = Debug|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|x64.ActiveCfg = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|x64.Build.0 = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|x86.ActiveCfg = Release|Any CPU
+		{1AAC3BDC-9315-405B-AA17-3667ECE8E210}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
