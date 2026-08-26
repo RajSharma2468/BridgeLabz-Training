@@ -121,6 +121,24 @@ namespace FundooNotes.API.Controllers
             }
         }
 
+        // PUT: api/note/1/pin
+        // Pins or unpins a note.
+        [HttpPut("{id}/pin")]
+        public IActionResult Pin(int id)
+        {
+            try
+            {
+                _business.PinNote(id);
+
+                return Ok(
+                    "Pin status updated.");
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
         // PUT: api/note/1/label
         // Updates label of a note.
         [HttpPut("{id}/label")]
@@ -179,6 +197,7 @@ namespace FundooNotes.API.Controllers
                     order));
         }
 
+
         // POST: api/note/1/send-reminder?email=test@gmail.com
         // Manually triggers reminder email.
         [HttpPost("{id}/send-reminder")]
@@ -198,5 +217,7 @@ namespace FundooNotes.API.Controllers
             return Ok(
                 "Reminder email sent successfully.");
         }
+
     }
+
 }

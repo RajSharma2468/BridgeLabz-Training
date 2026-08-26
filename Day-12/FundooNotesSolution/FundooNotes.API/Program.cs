@@ -61,7 +61,8 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IEmailService,
     EmailService>();
-
+// Registers in-memory caching service.
+builder.Services.AddMemoryCache();
 
 // Build application.
 var app = builder.Build();

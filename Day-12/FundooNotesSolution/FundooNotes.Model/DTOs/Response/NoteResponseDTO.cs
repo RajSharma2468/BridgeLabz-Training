@@ -18,5 +18,6 @@ namespace FundooNotes.Model.DTOs.Response
 
         // Reminder date and time.
         public DateTime? ReminderDateTime { get; set; }
+        public bool IsPinned { get; set; }
     }
 }

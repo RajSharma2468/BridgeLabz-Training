@@ -16,6 +16,6 @@ namespace FundooNotes.Business
         List<NoteResponseDTO> FilterNotes(string status);
         List<NoteResponseDTO> SortNotes(string sortBy, string order);
         // Update note label.
-       
+       void PinNote(int id);
     }
 }

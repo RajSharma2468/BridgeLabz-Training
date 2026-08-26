@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Caching.Memory;
 using FundooNotes.Model.DTOs.Request;
 using FundooNotes.Model.DTOs.Response;
 using FundooNotes.Model.Entities;
@@ -10,12 +11,16 @@ namespace FundooNotes.Business
     public class NoteBusiness : INoteBusiness
     {
         private readonly INoteRepository _repository;
+        private readonly IMemoryCache _cache;
+        private const string CacheKey = "AllNotes";
 
-        // Repository is injected through constructor.
+        // Repository and cache are injected through constructor.
         public NoteBusiness(
-            INoteRepository repository)
+            INoteRepository repository,
+            IMemoryCache cache)
         {
             _repository = repository;
+            _cache = cache;
         }
 
         // Creates a new note.
@@ -37,21 +42,39 @@ namespace FundooNotes.Business
             note.CreatedAt = DateTime.Now;
             note.IsTrashed = false;
             note.IsArchived = false;
+            note.IsPinned = false;
             note.Label = null;
             note.ReminderDateTime = null;
 
             // Save note through repository.
             _repository.Add(note);
+
+            // Clear cache since data changed.
+            InvalidateCache();
         }
 
-        // Returns all notes.
+        // Returns all notes, using cache when available.
         public List<NoteResponseDTO> GetAllNotes()
         {
+            // Check cache first before hitting database.
+            if (_cache.TryGetValue(CacheKey, out List<NoteResponseDTO> cachedNotes))
+            {
+                return cachedNotes;
+            }
+
             var notes = _repository.GetAll();
 
-            return notes
+            var result = notes
                 .Select(MapToDto)
                 .ToList();
+
+            // Store result in cache for 5 minutes.
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+
+            _cache.Set(CacheKey, result, cacheOptions);
+
+            return result;
         }
 
         // Returns a single note by ID.
@@ -80,6 +103,9 @@ namespace FundooNotes.Business
             }
 
             _repository.Delete(id);
+
+            // Clear cache since data changed.
+            InvalidateCache();
         }
 
         // Moves note to trash.
@@ -97,6 +123,9 @@ namespace FundooNotes.Business
             note.IsTrashed = !note.IsTrashed;
 
             _repository.Update(note);
+
+            // Clear cache since data changed.
+            InvalidateCache();
         }
 
         // Archives a note.
@@ -114,6 +143,29 @@ namespace FundooNotes.Business
             note.IsArchived = !note.IsArchived;
 
             _repository.Update(note);
+
+            // Clear cache since data changed.
+            InvalidateCache();
+        }
+
+        // Toggles the pinned flag on a note.
+        public void PinNote(int id)
+        {
+            var note = _repository.GetById(id);
+
+            if (note == null)
+            {
+                throw new UserNotFoundException(
+                    $"Note with id {id} not found.");
+            }
+
+            // Toggle pin status.
+            note.IsPinned = !note.IsPinned;
+
+            _repository.Update(note);
+
+            // Clear cache since data changed.
+            InvalidateCache();
         }
 
         // Filters notes based on status.
@@ -130,6 +182,16 @@ namespace FundooNotes.Business
             else if (status == "archive")
             {
                 isArchived = true;
+            }
+            else if (status == "active")
+            {
+                isTrashed = false;
+                isArchived = false;
+            }
+            else
+            {
+                throw new ValidationException(
+                    "Invalid status. Use active, trash, or archive.");
             }
 
             var notes =
@@ -177,6 +239,15 @@ namespace FundooNotes.Business
 
             // Save updated note.
             _repository.Update(note);
+
+            // Clear cache since data changed.
+            InvalidateCache();
+        }
+
+        // Removes cached data so next GetAllNotes fetches fresh data.
+        private void InvalidateCache()
+        {
+            _cache.Remove(CacheKey);
         }
 
         // Converts Entity into Response DTO.
@@ -192,8 +263,8 @@ namespace FundooNotes.Business
             dto.IsTrashed = note.IsTrashed;
             dto.IsArchived = note.IsArchived;
             dto.Label = note.Label;
-            dto.ReminderDateTime =
-                note.ReminderDateTime;
+            dto.ReminderDateTime = note.ReminderDateTime;
+            dto.IsPinned = note.IsPinned;
 
             return dto;
         }
